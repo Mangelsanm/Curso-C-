@@ -43,6 +43,18 @@ void eliminar(struct Arreglo *arr, int indice) {
     arr->longitud--;
 }
 
+void burbuja(struct Arreglo *arr){
+    for(int i = 0; i < arr->longitud; i++) {
+        for(int j = 0; j < arr->longitud - 1; j++) {
+            if(arr->Elem[j] > arr->Elem[j+1]) {
+                int auxiliar = arr->Elem [j];
+                arr->Elem[j] = arr->Elem[j+1];
+                arr->Elem[j+1] = auxiliar;
+            }
+        }
+    }
+}
+
 int bLineal(struct Arreglo *arr, int valor) {
     for(int i = 0; i < arr->longitud; i++) {
         if(valor == arr->Elem[i])
@@ -72,7 +84,7 @@ int bBinaria(struct Arreglo *arr, int valor) {
 }
 
 int main() {
-    struct Arreglo arr = {{2, 4, 6, 8, 10}, 10, 5};
+    struct Arreglo arr = {{12, 4, 16, 28, 1}, 10, 5};
     /*printf("Tamaño del arreglo: ");
     scanf("%d", &arr.nElem);
     arr.Elem = (int *)malloc(arr.nElem * sizeof(int));
@@ -87,10 +99,13 @@ int main() {
 
     agregar(&arr, 25);
     insertar(&arr, 2, 5);
-    eliminar(&arr, 6);
     imprimir(arr);
-    cout << "\nEl valor esta en el indice: " << bLineal(&arr, 8) << endl;
-    cout << "\nEl valor esta en el indice: " << bBinaria(&arr, 15) << endl;
+    cout << endl;
+    eliminar(&arr, 6);
+    burbuja(&arr);
+    imprimir(arr);
+    //cout << "\nEl valor esta en el indice: " << bLineal(&arr, 8) << endl;
+    //cout << "\nEl valor esta en el indice: " << bBinaria(&arr, 15) << endl;
     
     return 0;
 }
